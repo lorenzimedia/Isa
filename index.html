@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isa – Mentaltrainerin, Energetikerin & Autorin</title>
+    <meta name="description" content="Ich begleite Menschen in ihre Kraft, in ihre Wahrheit und in den Mut, sich selbst zu leben. Mentaltraining, Energiearbeit und Worte, die wirken.">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Isa – Mentaltrainerin, Energetikerin & Autorin">
+    <meta property="og:description" content="Ich begleite Menschen in ihre Kraft, in ihre Wahrheit und in den Mut, sich selbst zu leben.">
+    <meta property="og:image" content="og-image.jpg">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sage: {
+                            50: '#f6f7f6',
+                            100: '#e3e7e3',
+                            200: '#c6cfc6',
+                            300: '#a3b0a3',
+                            400: '#7d8f7d',
+                            500: '#627362',
+                            600: '#4d5b4d',
+                            700: '#404a40',
+                            800: '#363d36',
+                            900: '#2f342f',
+                        },
+                        gold: {
+                            50: '#fdfbf7',
+                            100: '#f9f3e8',
+                            200: '#f2e4cc',
+                            300: '#e8d0a8',
+                            400: '#dbb87c',
+                            500: '#cfa05a',
+                            600: '#b8864a',
+                            700: '#996a3e',
+                            800: '#7c5537',
+                            900: '#66472f',
+                        },
+                        anthracite: {
+                            50: '#f6f6f6',
+                            100: '#e7e7e7',
+                            200: '#d1d1d1',
+                            300: '#b0b0b0',
+                            400: '#888888',
+                            500: '#6d6d6d',
+                            600: '#5d5d5d',
+                            700: '#4f4f4f',
+                            800: '#454545',
+                            900: '#3d3d3d',
+                        },
+                        offwhite: '#faf9f7',
+                    },
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+                        sans: ['Nunito Sans', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Nunito+Sans:opsz,wght@6..12,300;6..12,400;6..12,500;6..12,600&display=swap" rel="stylesheet">
+    
+    <!-- Alpine.js -->
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Nunito Sans', system-ui, sans-serif;
+            background-color: #faf9f7;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+        
+        .bg-leaves {
+            background-image: url('Gemini_Generated_Image_spbz9uspbz9uspbz.png');
+            background-position: right top;
+            background-repeat: no-repeat;
+            background-size: 40%;
+            background-attachment: fixed;
+        }
+        
+        @media (max-width: 768px) {
+            .bg-leaves {
+                background-size: 60%;
+                background-position: right -50px top -50px;
+            }
+        }
+        
+        .section-fade {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-offwhite text-anthracite-800 min-h-screen bg-leaves" x-data="{ mobileMenuOpen: false, showScrollTop: false }" @scroll.window="showScrollTop = window.scrollY > 400">
+    
+    <!-- Header / Navigation -->
+    <header class="sticky top-0 z-50 bg-offwhite/95 backdrop-blur-sm border-b border-sage-100">
+        <nav class="max-w-5xl mx-auto px-6 py-4" aria-label="Hauptnavigation">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <a href="#home" class="text-3xl font-serif font-medium text-sage-700 hover:text-sage-600 transition-colors">
+                    Isa
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <ul class="hidden md:flex items-center gap-8">
+                    <li>
+                        <a href="#home" class="text-anthracite-600 hover:text-sage-600 transition-colors font-medium">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="text-anthracite-600 hover:text-sage-600 transition-colors font-medium">
+                            Über mich
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#media" class="text-anthracite-600 hover:text-sage-600 transition-colors font-medium">
+                            Bücher & Podcast
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="bg-sage-600 text-white px-5 py-2 rounded-full hover:bg-sage-700 transition-colors font-medium">
+                            Kontakt
+                        </a>
+                    </li>
+                </ul>
+                
+                <!-- Mobile Menu Button -->
+                <button 
+                    @click="mobileMenuOpen = !mobileMenuOpen" 
+                    class="md:hidden p-2 text-anthracite-700 hover:text-sage-600 transition-colors"
+                    :aria-expanded="mobileMenuOpen"
+                    aria-label="Menü öffnen"
+                >
+                    <svg x-show="!mobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg x-show="mobileMenuOpen" x-cloak class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Navigation -->
+            <div 
+                x-show="mobileMenuOpen" 
+                x-transition:enter="transition ease-out duration-200"
+                x-transition:enter-start="opacity-0 -translate-y-2"
+                x-transition:enter-end="opacity-100 translate-y-0"
+                x-transition:leave="transition ease-in duration-150"
+                x-transition:leave-start="opacity-100 translate-y-0"
+                x-transition:leave-end="opacity-0 -translate-y-2"
+                x-cloak
+                class="md:hidden mt-4 pb-4 border-t border-sage-100 pt-4"
+            >
+                <ul class="flex flex-col gap-4">
+                    <li>
+                        <a href="#home" @click="mobileMenuOpen = false" class="block text-anthracite-600 hover:text-sage-600 transition-colors font-medium py-2">
+                            Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" @click="mobileMenuOpen = false" class="block text-anthracite-600 hover:text-sage-600 transition-colors font-medium py-2">
+                            Über mich
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#media" @click="mobileMenuOpen = false" class="block text-anthracite-600 hover:text-sage-600 transition-colors font-medium py-2">
+                            Bücher & Podcast
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" @click="mobileMenuOpen = false" class="block bg-sage-600 text-white px-5 py-3 rounded-full hover:bg-sage-700 transition-colors font-medium text-center mt-2">
+                            Kontakt aufnehmen
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    
+    <main>
+        <!-- HOME Section -->
+        <section id="home" class="min-h-[85vh] flex items-center">
+            <div class="max-w-5xl mx-auto px-6 py-20 md:py-32">
+                <div class="max-w-2xl">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-anthracite-900 leading-tight mb-8">
+                        In deine Kraft.<br>
+                        <span class="text-sage-600">In deine Wahrheit.</span>
+                    </h1>
+                    
+                    <div class="space-y-6 text-lg md:text-xl text-anthracite-700 leading-relaxed mb-10">
+                        <p>
+                            Ich begleite Menschen in ihre Kraft, in ihre Wahrheit und in den Mut, sich selbst zu leben.
+                        </p>
+                        <p>
+                            Meine Arbeit verbindet Energie, Herz und klare Worte, die wirken.
+                        </p>
+                        <p class="text-sage-600 font-medium">
+                            Schön, dass du hier bist.
+                        </p>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#contact" class="inline-flex items-center justify-center bg-sage-600 text-white px-8 py-4 rounded-full hover:bg-sage-700 transition-all hover:shadow-lg font-medium text-lg">
+                            Jetzt Kontakt aufnehmen
+                        </a>
+                        <a href="#about" class="inline-flex items-center justify-center border-2 border-sage-300 text-sage-700 px-8 py-4 rounded-full hover:border-sage-400 hover:bg-sage-50 transition-all font-medium text-lg">
+                            Mehr über mich
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- ABOUT Section -->
+        <section id="about" class="py-20 md:py-28 bg-white/60">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-anthracite-900 mb-6">
+                        Wer ich wirklich bin
+                    </h2>
+                    <p class="text-xl md:text-2xl text-sage-600 font-serif italic leading-relaxed">
+                        „Ich öffne Räume, in denen Mut entsteht, Herzen heilen und Geschichten beginnen."
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-12 md:gap-16 mb-16">
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-serif font-medium text-anthracite-900">Wer ich bin</h3>
+                        <p class="text-anthracite-700 leading-relaxed">
+                            Ich bin Isa, Mentaltrainerin, Energetikerin und Autorin. Und meine Aufgabe ist es, Räume zu öffnen, in denen Menschen sich selbst wiederfinden.
+                        </p>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <h3 class="text-2xl font-serif font-medium text-anthracite-900">Was mich bewegt</h3>
+                        <p class="text-anthracite-700 leading-relaxed">
+                            Menschen in ihrer Tiefe zu sehen, ihnen zu helfen, ihre eigene Kraft wiederzufinden und Räume zu schaffen, in denen echte Transformation möglich wird.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="mb-16">
+                    <h3 class="text-2xl font-serif font-medium text-anthracite-900 mb-6 text-center">Warum ich tue, was ich tue</h3>
+                    <p class="text-anthracite-700 leading-relaxed max-w-3xl mx-auto text-center">
+                        Weil ich weiß, wie es sich anfühlt, sich verloren zu fühlen. Und weil ich erfahren habe, wie kraftvoll es ist, wenn jemand wirklich da ist, wirklich hinsieht und wirklich an dich glaubt.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                    <!-- Was du bei mir findest -->
+                    <div class="bg-sage-50/70 rounded-2xl p-8 border border-sage-100">
+                        <h3 class="text-xl font-serif font-medium text-sage-800 mb-6">Was du bei mir findest</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Ehrlichkeit, die sanft ist und trotzdem klar</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Räume, die dich wachsen lassen</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Worte, die fühlen</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Energiearbeit, die dich stärkt</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Mut, der ansteckt</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Tiefe statt Oberfläche</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-sage-500 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Leichtigkeit, die dich durch schwere Momente trägt</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Was du bei mir nicht findest -->
+                    <div class="bg-gold-50/70 rounded-2xl p-8 border border-gold-100">
+                        <h3 class="text-xl font-serif font-medium text-gold-800 mb-6">Was du bei mir nicht findest</h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Esoterik ohne Boden</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Versprechen, die dir die Verantwortung nehmen</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Oberflächliche Motivation</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Bewertungen oder Schubladen</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Schnelllösungen ohne Tiefe</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="w-2 h-2 bg-gold-400 rounded-full mt-2 flex-shrink-0"></span>
+                                <span class="text-anthracite-700">Masken, Rollen oder künstliche Perfektion</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- MEDIA Section (Bücher & Podcast) -->
+        <section id="media" class="py-20 md:py-28">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center mb-16">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-anthracite-900 mb-6">
+                        Bücher & Podcast
+                    </h2>
+                    <p class="text-xl text-sage-600 font-serif italic mb-4">
+                        Worte, die wirken. Geschichten, die bleiben.
+                    </p>
+                    <p class="text-anthracite-700 leading-relaxed">
+                        Manchmal braucht es nur einen Satz, um etwas in uns zu bewegen. Hier findest du meine Bücher und meinen Podcast – zwei Wege, wie ich Menschen begleite.
+                    </p>
+                </div>
+                
+                <!-- Bücher -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-serif font-medium text-anthracite-900 mb-8 text-center">Meine Bücher</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Lotti & Luki -->
+                        <div class="bg-white rounded-2xl p-8 shadow-sm border border-sage-100 hover:shadow-md transition-shadow">
+                            <div class="mb-6">
+                                <span class="inline-block bg-sage-100 text-sage-700 text-sm font-medium px-3 py-1 rounded-full mb-4">Kinderbücher</span>
+                                <h4 class="text-xl font-serif font-medium text-anthracite-900 mb-3">
+                                    „Lotti & Luki"
+                                </h4>
+                                <p class="text-sage-600 font-medium mb-3">
+                                    Magische Kinderbücher voller Mut, Freundschaft und Fantasie
+                                </p>
+                                <p class="text-anthracite-600 leading-relaxed">
+                                    Für Kinder, Eltern und alle, die an magische Momente glauben.
+                                </p>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-2 text-sage-600 hover:text-sage-700 font-medium transition-colors group">
+                                Zu den Büchern auf Amazon
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                        
+                        <!-- Herzverbindung -->
+                        <div class="bg-white rounded-2xl p-8 shadow-sm border border-gold-100 hover:shadow-md transition-shadow">
+                            <div class="mb-6">
+                                <span class="inline-block bg-gold-100 text-gold-700 text-sm font-medium px-3 py-1 rounded-full mb-4">Für Erwachsene</span>
+                                <h4 class="text-xl font-serif font-medium text-anthracite-900 mb-3">
+                                    „Herzverbindung"
+                                </h4>
+                                <p class="text-gold-600 font-medium mb-3">
+                                    Ein Buch über Liebe, Seelenpartner & die Kraft unserer Geschichten
+                                </p>
+                                <p class="text-anthracite-600 leading-relaxed">
+                                    Ein tiefes, ehrliches Werk für alle, die mehr über Herzverbindungen erfahren möchten.
+                                </p>
+                            </div>
+                            <a href="#" class="inline-flex items-center gap-2 text-gold-600 hover:text-gold-700 font-medium transition-colors group">
+                                Herzverbindung auf Amazon
+                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Podcast -->
+                <div class="bg-gradient-to-br from-sage-50 to-gold-50 rounded-2xl p-8 md:p-12 border border-sage-100">
+                    <div class="max-w-2xl mx-auto text-center">
+                        <span class="inline-block bg-white text-sage-700 text-sm font-medium px-4 py-1.5 rounded-full mb-6 shadow-sm">Podcast</span>
+                        <h3 class="text-2xl md:text-3xl font-serif font-medium text-anthracite-900 mb-4">
+                            Mein Podcast – Herzensworte für deine Frequenz
+                        </h3>
+                        <ul class="text-anthracite-700 mb-8 space-y-2">
+                            <li>Impulse, Energie, Mut und Klarheit</li>
+                            <li>Worte, die erinnern, stärken und zurück in die Wahrheit führen</li>
+                        </ul>
+                        <a href="#" class="inline-flex items-center justify-center gap-2 bg-sage-600 text-white px-8 py-4 rounded-full hover:bg-sage-700 transition-all hover:shadow-lg font-medium">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                            </svg>
+                            Zum Podcast
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CONTACT Section -->
+        <section id="contact" class="py-20 md:py-28 bg-white/60">
+            <div class="max-w-5xl mx-auto px-6">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-serif font-medium text-anthracite-900 mb-6">
+                        Komm näher
+                    </h2>
+                    <p class="text-xl text-sage-600 font-serif italic mb-4">
+                        „Manchmal beginnt alles mit einer Nachricht."
+                    </p>
+                    <p class="text-anthracite-700 leading-relaxed">
+                        Wenn du spürst, dass meine Worte oder meine Energie dich berühren, dann schreib mir gerne.
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-5 gap-12">
+                    <!-- Contact Form -->
+                    <div class="md:col-span-3">
+                        <form class="space-y-6" action="#" method="POST">
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-anthracite-700 mb-2">
+                                    Name <span class="text-sage-600">*</span>
+                                </label>
+                                <input 
+                                    type="text" 
+                                    id="name" 
+                                    name="name" 
+                                    required
+                                    class="w-full px-4 py-3 rounded-xl border border-sage-200 bg-white focus:border-sage-400 focus:ring-2 focus:ring-sage-200 focus:outline-none transition-all"
+                                    placeholder="Dein Name"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label for="email" class="block text-sm font-medium text-anthracite-700 mb-2">
+                                    E-Mail <span class="text-sage-600">*</span>
+                                </label>
+                                <input 
+                                    type="email" 
+                                    id="email" 
+                                    name="email" 
+                                    required
+                                    class="w-full px-4 py-3 rounded-xl border border-sage-200 bg-white focus:border-sage-400 focus:ring-2 focus:ring-sage-200 focus:outline-none transition-all"
+                                    placeholder="deine@email.at"
+                                >
+                            </div>
+                            
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-anthracite-700 mb-2">
+                                    Telefon <span class="text-anthracite-400">(optional)</span>
+                                </label>
+                                <input 
+                                    type="tel" 
+                                    id="phone" 
+                                    name="phone"
+                                    class="w-full px-4 py-3 rounded-xl border border-sage-200 bg-white focus:border-sage-400 focus:ring-2 focus:ring-sage-200 focus:outline-none transition-all"
+                                    placeholder="+43 ..."
+                                >
+                            </div>
+                            
+                            <div>
+                                <label for="message" class="block text-sm font-medium text-anthracite-700 mb-2">
+                                    Nachricht <span class="text-sage-600">*</span>
+                                </label>
+                                <textarea 
+                                    id="message" 
+                                    name="message" 
+                                    rows="5" 
+                                    required
+                                    class="w-full px-4 py-3 rounded-xl border border-sage-200 bg-white focus:border-sage-400 focus:ring-2 focus:ring-sage-200 focus:outline-none transition-all resize-none"
+                                    placeholder="Was möchtest du mir sagen?"
+                                ></textarea>
+                            </div>
+                            
+                            <button 
+                                type="submit"
+                                class="w-full bg-sage-600 text-white px-8 py-4 rounded-full hover:bg-sage-700 transition-all hover:shadow-lg font-medium text-lg"
+                            >
+                                Nachricht senden
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="md:col-span-2 space-y-8">
+                        <div class="bg-sage-50/70 rounded-2xl p-6 border border-sage-100">
+                            <h3 class="text-lg font-serif font-medium text-anthracite-900 mb-4">Kontaktdaten</h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-sage-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                                    </svg>
+                                    <a href="mailto:mail@beispiel.at" class="text-anthracite-700 hover:text-sage-600 transition-colors">
+                                        mail@beispiel.at
+                                    </a>
+                                </li>
+                                <li class="flex items-start gap-3">
+                                    <svg class="w-5 h-5 text-sage-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                    </svg>
+                                    <a href="tel:+43" class="text-anthracite-700 hover:text-sage-600 transition-colors">
+                                        +43 ...
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-gold-50/70 rounded-2xl p-6 border border-gold-100">
+                            <h3 class="text-lg font-serif font-medium text-anthracite-900 mb-4">Folge mir</h3>
+                            <a href="#" class="inline-flex items-center gap-3 text-anthracite-700 hover:text-sage-600 transition-colors group">
+                                <span class="w-10 h-10 bg-white rounded-full flex items-center justify-center shadow-sm group-hover:shadow transition-shadow">
+                                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                                    </svg>
+                                </span>
+                                Instagram
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer -->
+    <footer class="bg-anthracite-900 text-white py-12">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="text-center md:text-left">
+                    <p class="text-anthracite-300">
+                        &copy; <span x-text="new Date().getFullYear()"></span> Isa – Mentaltraining, Energiearbeit & Worte, die wirken.
+                    </p>
+                </div>
+                <nav class="flex items-center gap-6" aria-label="Footer Navigation">
+                    <a href="#" class="text-anthracite-300 hover:text-white transition-colors">
+                        Impressum
+                    </a>
+                    <a href="#" class="text-anthracite-300 hover:text-white transition-colors">
+                        Datenschutz
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Scroll to Top Button -->
+    <button 
+        x-show="showScrollTop"
+        x-transition:enter="transition ease-out duration-300"
+        x-transition:enter-start="opacity-0 translate-y-4"
+        x-transition:enter-end="opacity-100 translate-y-0"
+        x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 translate-y-0"
+        x-transition:leave-end="opacity-0 translate-y-4"
+        @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+        class="fixed bottom-8 right-8 w-12 h-12 bg-sage-600 text-white rounded-full shadow-lg hover:bg-sage-700 hover:shadow-xl transition-all flex items-center justify-center z-40"
+        aria-label="Nach oben scrollen"
+    >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
+    
+    <!-- Alpine.js x-cloak style -->
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
+</body>
+</html>
+
